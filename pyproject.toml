@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "intranet"
+version = "0.1.0"
+description = ""
+authors = ["filipe <filipe@fmartns.dev>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.12,<4.0"
+django = "^6.0.5"
+python-env = "^1.0.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

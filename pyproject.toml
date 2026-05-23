@@ -41,3 +41,10 @@ src_paths = ["django"]
 DJANGO_SETTINGS_MODULE = "core.settings.development"
 pythonpath = ["django"]
 python_files = ["test_*.py", "*_test.py"]
+
+[tool.basedpyright]
+pythonVersion = "3.12"
+venvPath = "."
+venv = ".venv"
+extraPaths = ["django"]
+typeCheckingMode = "basic"

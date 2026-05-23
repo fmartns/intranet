@@ -68,5 +68,6 @@
     }
   },
   "postCreateCommand": "poetry install --no-interaction --no-ansi",
-  "postStartCommand": "git config --global --add safe.directory /workspace || true"
+  "postStartCommand": "git config --global --add safe.directory /workspace || true",
+  "postAttachCommand": "bash /workspace/docker/start-dev-server.sh"
 }

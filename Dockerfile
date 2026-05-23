@@ -3,9 +3,11 @@ FROM python:3.12-slim-bookworm
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     PIP_NO_CACHE_DIR=1 \
-    POETRY_VIRTUALENVS_CREATE=false \
     POETRY_NO_INTERACTION=1 \
-    POETRY_CACHE_DIR=/tmp/poetry-cache
+    POETRY_VIRTUALENVS_IN_PROJECT=true \
+    POETRY_CACHE_DIR=/tmp/poetry-cache \
+    PATH="/workspace/.venv/bin:$PATH" \
+    VIRTUAL_ENV="/workspace/.venv"
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
@@ -21,17 +23,16 @@ RUN groupadd --gid 1000 appuser \
     && useradd --uid 1000 --gid appuser --create-home --shell /bin/bash appuser
 
 WORKDIR /workspace
+RUN chown appuser:appuser /workspace
 
-COPY pyproject.toml poetry.lock ./
+USER appuser
+
+COPY --chown=appuser:appuser pyproject.toml poetry.lock ./
 
 RUN poetry install --no-root --no-ansi \
     && rm -rf "$POETRY_CACHE_DIR"
 
 COPY --chown=appuser:appuser . .
-
-RUN chmod +x /workspace/docker/entrypoint.sh
-
-USER appuser
 
 WORKDIR /workspace/django
 

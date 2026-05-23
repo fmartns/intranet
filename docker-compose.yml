@@ -9,6 +9,7 @@ services:
       - .env
     volumes:
       - .:/workspace
+      - intranet-venv:/workspace/.venv
     ports:
       - "${DJANGO_PORT:-8000}:8000"
     depends_on:
@@ -59,3 +60,4 @@ networks:
 
 volumes:
   postgres_data:
+  intranet-venv:

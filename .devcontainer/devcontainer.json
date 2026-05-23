@@ -4,6 +4,8 @@
   "service": "django",
   "workspaceFolder": "/workspace",
   "remoteUser": "appuser",
+  "overrideCommand": true,
+  "updateRemoteUserUID": true,
   "forwardPorts": [8000, 5432, 6379, 8080],
   "portsAttributes": {
     "8000": {
@@ -36,7 +38,7 @@
         "editorconfig.editorconfig"
       ],
       "settings": {
-        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "python.defaultInterpreterPath": "/workspace/.venv/bin/python",
         "python.analysis.extraPaths": ["/workspace/django"],
         "python.envFile": "/workspace/.env",
         "python.testing.pytestEnabled": true,

@@ -1,0 +1,7 @@
+openapi: 3.0.3
+info:
+  title: Intranet API
+  version: 1.0.0
+  description: Intranet API
+paths: {}
+components: {}

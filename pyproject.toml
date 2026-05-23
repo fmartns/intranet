@@ -1,16 +1,39 @@
 [tool.poetry]
 name = "intranet"
 version = "0.1.0"
-description = ""
+description = "Intranet monorepo — Django backend with future ADK integration"
 authors = ["filipe <filipe@fmartns.dev>"]
 readme = "README.md"
+package-mode = false
 
 [tool.poetry.dependencies]
 python = ">=3.12,<4.0"
 django = "^6.0.5"
 python-env = "^1.0.0"
+psycopg = {extras = ["binary"], version = "^3.2"}
 
+[tool.poetry.group.dev.dependencies]
+black = "^25.1.0"
+flake8 = "^7.1"
+isort = "^6.0"
+pytest = "^8.3"
+pytest-django = "^4.10"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 120
+target-version = ["py312"]
+
+[tool.isort]
+profile = "black"
+line_length = 120
+known_first_party = ["core"]
+src_paths = ["django"]
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "core.settings.development"
+pythonpath = ["django"]
+python_files = ["test_*.py", "*_test.py"]

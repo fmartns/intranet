@@ -23,7 +23,7 @@ from health.views import HealthCheckView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("drf/auth/", include("rest_framework.urls")),
+    path("auth/", include("auth.urls")),
     path("schema/", SpectacularAPIView.as_view(), name="schema"),
     path("docs/", SpectacularSwaggerView.as_view(url_name="schema"), name="swagger-ui"),
     path("schema/redoc/", SpectacularRedocView.as_view(url_name="schema"), name="redoc"),

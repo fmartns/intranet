@@ -1,0 +1,41 @@
+from django.urls import path
+
+from .views import (
+    CsrfTokenView,
+    CurrentUserView,
+    GitHubAuthorizationView,
+    GitHubCallbackView,
+    InviteCreateView,
+    InviteListView,
+    InviteValidateView,
+    LoginView,
+    LogoutView,
+    MfaDisableView,
+    MfaSetupConfirmView,
+    MfaSetupView,
+    MfaVerifyView,
+    PasswordChangeView,
+    PasswordForgotView,
+    PasswordResetView,
+    RegisterView,
+)
+
+urlpatterns = [
+    path("csrf/", CsrfTokenView.as_view(), name="auth-csrf"),
+    path("register/", RegisterView.as_view(), name="auth-register"),
+    path("invites/", InviteListView.as_view(), name="auth-invite-list"),
+    path("invites/create/", InviteCreateView.as_view(), name="auth-invite-create"),
+    path("invites/validate/", InviteValidateView.as_view(), name="auth-invite-validate"),
+    path("login/", LoginView.as_view(), name="auth-login"),
+    path("logout/", LogoutView.as_view(), name="auth-logout"),
+    path("me/", CurrentUserView.as_view(), name="auth-me"),
+    path("password/change/", PasswordChangeView.as_view(), name="auth-password-change"),
+    path("password/forgot/", PasswordForgotView.as_view(), name="auth-password-forgot"),
+    path("password/reset/", PasswordResetView.as_view(), name="auth-password-reset"),
+    path("mfa/setup/", MfaSetupView.as_view(), name="auth-mfa-setup"),
+    path("mfa/setup/confirm/", MfaSetupConfirmView.as_view(), name="auth-mfa-setup-confirm"),
+    path("mfa/verify/", MfaVerifyView.as_view(), name="auth-mfa-verify"),
+    path("mfa/disable/", MfaDisableView.as_view(), name="auth-mfa-disable"),
+    path("social/github/", GitHubAuthorizationView.as_view(), name="auth-github-authorize"),
+    path("social/github/callback/", GitHubCallbackView.as_view(), name="auth-github-callback"),
+]
